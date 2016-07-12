@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Quote</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+
+    <style>
+       /* .well{
+            height: 250px;
+        }
+        .centrado{
+            margin:auto;
+            position:absolute;
+            top:0;left:0;bottom:0;right:0;
+        }
+
+        .centrado.responsivo{
+            width: 50%;
+            height: 50%;
+            max-width: 500px;
+            padding: 10px;
+        }
+        */
+       body{
+           background-image: url("http://65.media.tumblr.com/f4a1397bd8d435b12db4376fa059ee43/tumblr_mvptkiCplY1qmbg8bo1_500.jpg");
+           background-position: center center;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           background-size: cover;
+           font-family: 'Slabo 27px', serif;
+       }
+       .rigth{
+           float: right;
+       }
+        .quoteText{
+            font-size:3em;
+        }
+        .quoteBox{
+            margin: 8% auto auto auto;
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+            padding: 10%;
+        }
+        .autor{
+            font-size: 1.8em;
+            text-align: right;
+            padding-right: 10%;
+        }
+        .footer{
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+    <div class="container-fluid" id="ppal" style="padding: 5%">
+        <div class="col-md-8 col-md-offset-2 ">
+            <div class="row  text-center quoteBox" >
+                <div class="quoteText" >
+                    "Si de vivir se trata, hacer lo correcto en realidad no importa."
+                </div>
+                <div class="autor">
+                    - <span id="qautor">Anonimo</span>
+                </div>
+                <div style="padding-top: 10%">
+                    <button id="cambiarColor" class="btn btn-primary rigth" >
+                        Random Quote
+                    </button>
+                </div>
+
+
+            </div>
+
+            <div class="row text-center">
+                <div class="footer">
+                    By <b><a href="https://github.com/cposada23" style="text-decoration: none; color: #810f07;" target="_blank">Camilo Posada Angel</a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/appjs.js"></script>
+    <script>
+        function getQuote() {
+            $.ajax({
+                headers:{
+                    "X-Mashape-Key":"Pb1LpEcQvNmshNCYlJtRhjW2UKcVp1UDV7ujsnAUW0RI5QB3Me",
+                    accept:"aplication/json",
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                url:"https://andruxnet-random-famous-quotes.p.mashape.com/?cat=movies",
+                success:function (response) {
+                    console.log("response" + response);
+                    var r = JSON.parse(response);
+
+                    var quote ='"' + r.quote + '"';
+                    var autor = r.author;
+
+                    $("#qautor").html(autor);
+                    $(".quoteText").html(quote);
+
+                }
+
+            });
+        }
+        $(document).ready(function () {
+
+            var images = ["http://66.media.tumblr.com/tumblr_lnj4uuo9PC1qfys8wo1_1280.jpg",
+                "http://66.media.tumblr.com/tumblr_mazkwl37nS1qjnw5jo1_500.gif",
+                "http://67.media.tumblr.com/0ab5f23480cd2491df69825452ff9142/tumblr_n8l6m3IAAa1rznvc3o1_1280.gif",
+                "http://66.media.tumblr.com/651e5a215f114e1662a1f76568c7e6e5/tumblr_mr6s7tXEdi1r0ii93o1_500.gif",
+                "http://67.media.tumblr.com/276e3484a0bb1ce2189c05a7ccf33915/tumblr_nb8hkey5LC1rfj6pmo1_500.gif",
+                "http://67.media.tumblr.com/tumblr_mbozevUuP31r51psro1_1280.jpg",
+                "http://66.media.tumblr.com/ef84253014b17fc34530380a9ddfcdda/tumblr_n4x2jjOCYj1qedhgdo1_500.jpg"];
+            var i = 0;
+            var colors = ["#0f0f0f", "#3c3c3c"];
+            $("#cambiarColor").on("click", function () {
+                console.log("cambiar imagen");
+                getQuote();
+                $("body").css("background-image",'url('+images[i]+')');
+                i = (i+1)%images.length;
+            });
+
+        });
+    </script>
+</body>
+</html>

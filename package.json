@@ -1,0 +1,14 @@
+{
+  "name": "1",
+  "version": "1.0.0",
+  "description": "Random quote generator. Free code camp challenges",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Camilo Posada",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "1",
+  "description": "basic http server",
+  "main": "index.js",
+  "authors": [
+    "Camilo Posada"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
